@@ -89,7 +89,7 @@ update-rc.d minecraft defaults
 service minecraft start
 ```
 
-- All the commands :
+-   All the commands :
 
 ``` bash
 service minecraft {start|stop|update|backup|status|restart}
