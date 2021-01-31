@@ -103,7 +103,7 @@ If you want to edit the script to increase the ram, follow the instructions :
 nano /etc/init.d/minecraft
 ```
 
-edit this line : *INVOCATION='java -Xmx3072M -Xms3072M -jar minecraft_server.jar nogui'*
+edit this line : `INVOCATION='java -Xmx3072M -Xms3072M -jar minecraft_server.jar nogui'`
 
 for save and leave make *ctrl+o*, enter and *ctrl+x*.
 
