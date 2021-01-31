@@ -32,39 +32,80 @@ sudo apt update && upgrade
 ```
 
 ```bash
-sudo apt install openjdk-8-jre-headless screen
+apt-get install default-jdk screen
 ```
 
 ```bash
 sudo adduser minecraft
 ```
 
--   Now you need to connect on minecraft
+-   Now you need to connect on minecraft :
 
 ```bash
 su minecraft
 ```
 
+```bash
+cd /home/minecraft
+```
+
 -   Upload last update of server files in `/home/minecraft/`
--   Create `Run.sh` and paste this inside `/home/minecraft/`
 
 ```bash
-#!/bin/sh
-
-java -Xms1024M -Xmx3072M -jar minecraft_server.jar -o true
+touch eula.txt && echo "eula=true" >> eula.txt
 ```
 
--   Make `Run.sh` executable
+-   Downlaod the `minecraft.sh` script to start easily  :
 
 ```bash
-chmod +x /home/minecraft/run.sh
+wget -O /etc/init.d/minecraft http://taberna6.el-taberna.com/server/minecraft.sh
 ```
 
--   To start your server :
+-   Create a backup directory :
+
+```bash
+mkdir /home/minecraft/backups
+```
+
+-   Make your script executable :
+
+```bash
+chmod +x /etc/init.d/minecraft
+
+chown minecraft:minecraft /etc/init.d/minecraft
+
+chown -R minecraft:minecraft /home/minecraft/
+```
+
+-   Launch at Startup (Not Recommended) :
+
+```bash
+update-rc.d minecraft defaults
+```
+
+-   Now you can start your server with this command :
 
 ``` bash
-screen /home/minecraft/run.sh
+service minecraft start
 ```
+
+- All the commands :
+
+``` bash
+service minecraft {start|stop|update|backup|status|restart}
+```
+
+**/!\ Attention /!\**
+
+If you want to edit the script to increase the ram, follow the instructions :
+
+```bash
+nano /etc/init.d/minecraft
+```
+
+edit this line : *INVOCATION='java -Xmx3072M -Xms3072M -jar minecraft_server.jar nogui'*
+
+for save and leave make *ctrl+o*, enter and *ctrl+x*.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
